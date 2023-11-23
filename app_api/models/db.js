@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
+const host = process.env.DB_HOST || '127.0.0.1';
+const dbURI = `mongodb://${host}/travlr`;
 const readLine = require('readline');
 
-let dbURL = 'mongodb://mongodb://127.0.0.1:27017/travlr';
-if (process.env.NODE_ENV == 'production') {
-    dbURL = process.env.DB_HOST || process.env.MONGODB_URI;
-}
+// let dbURL = 'mongodb://mongodb://127.0.0.1:27017/travlr';
+// if (process.env.NODE_ENV == 'production') {
+//     dbURL = process.env.DB_HOST || process.env.MONGODB_URI;
+// }
 
 const connect = () => {
-    setTimeout(() => mongoose.connect(dbURL, {
+    setTimeout(() => mongoose.connect(dbURI, {
         useNewUrlParser: true,
-        useCreateIndex: true,
-        useUnifiedTopology: true
+        useCreateIndex: true
     }), 1000);
 }
 
